@@ -9,10 +9,19 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Refunds;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Controller
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+    /**
+     * get_refunds
+     *
+     * @param  mixed $year
+     * @param  mixed $limit
+     * @return void
+     */
     public function get_refunds($year, $limit = 5) {
         $year = (int)$year;
         $limit = (int)$limit > 0 ? (int)$limit : 5;
@@ -29,6 +38,12 @@ class Controller extends BaseController
             ]);
     }
 
+    /**
+     * get_social_ranking
+     *
+     * @param  mixed $top
+     * @return void
+     */
     public function get_social_ranking($top = 5) {
         $top = (int)$top > 0 ? (int)$top : 5;
         $top = $top > 1000 ? 1000 : $top;
